@@ -1,19 +1,23 @@
 const express = require("express");
-const { connection } = require("mongoose");
+const { connection } = require("./configs/mongoose.connection");
+const { tripRouter } = require("./routes/trip.route");
 const app = express();
+const cors = require("cors");
+app.use(express.json());
+app.use(cors())
 
 
 
 
 app.get("/",async(req,res)=>{
     try {
-        res.send("home ")
+        res.send("Make my trip server ")
     } catch (error) {
         console.log(error)
     }
 })
 
-
+app.use("/trip",tripRouter)
 
 
 
